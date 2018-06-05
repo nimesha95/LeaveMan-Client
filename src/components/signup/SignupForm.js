@@ -33,7 +33,7 @@ class SignupForm extends React.Component {
             type: 'success',
             text: 'You have Signeup succesfully'
           })
-          this.context.router.history.push("/");
+          this.context.router.history.push("/signin");
         },
         ({ response }) => {
           this.props.addFlashMessage({
