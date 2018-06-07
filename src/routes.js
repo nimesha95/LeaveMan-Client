@@ -1,17 +1,16 @@
 import React from "react";
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { Route, BrowserRouter, Switch} from "react-router-dom";
 import { render } from "react-dom";
 
 import App from "./components/App";
 
-import Greetings from "./components/Greetings";
 import SignupPage from "./components/signup/SignupPage";
 import LoginPage from "./components/signin/LoginPage";
 import RequestLeavePage from "./components/leave_request/RequestLeavePage";
-import AdminPage from "./components/admin/RequestLeavePage";
-import AcademicPage from "./components/academic/RequestLeavePage";
-import DeptHeadPage from "./components/dept_head/RequestLeavePage";
-import EmployeePage from "./components/employee/RequestLeavePage";
+import AdminPage from "./components/admin/AdminPage";
+import AcademicPage from "./components/academic/AcademicPage";
+import DeptHeadPage from "./components/dept_head/DeptHeadPage";
+import EmployeePage from "./components/employee/EmployeeLeavePage";
 import requireAuth from './utils/requireAuth';
 
 export default (

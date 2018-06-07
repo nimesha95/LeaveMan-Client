@@ -1,7 +1,7 @@
 import React from "react";
-import { hot } from "react-hot-loader";
 import { PropTypes } from "prop-types";
 import classnames from 'classnames';
+import { connect } from "react-redux";
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -28,7 +28,26 @@ class LoginForm extends React.Component {
             type: 'success',
             text: 'You have Logged in succesfully'
           })
-          this.context.router.history.push("/");
+          var user_type = this.props.auth ? this.props.auth.user.user_type : "0";
+          console.log("ha ha ha:"+user_type);
+          switch(user_type){
+            case "emp":
+              this.context.router.history.push("/employee");
+              break;
+            case "dpt":
+              this.context.router.history.push("/dept_head");
+              break;
+            case "adm":
+              this.context.router.history.push("/admin");
+              break;
+            case "aca":
+              this.context.router.history.push("/academic");
+              break;
+            default:
+              console.log("some error occured during login");
+              break;
+          }
+          
         },
         ({ response }) => {
           this.setState({ errors: response.data , isLoading:false})
@@ -89,4 +108,9 @@ LoginForm.propTypes = {
     router: PropTypes.object
   }
 
-export default (LoginForm);
+  function mapStateToProps(state){
+    return {
+      auth : state.auth
+    }
+  }  
+export default (connect(mapStateToProps))(LoginForm);

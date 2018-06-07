@@ -1,7 +1,6 @@
 import React from "react";
 import {Link } from "react-router-dom";
 import {connect} from 'react-redux';
-import { hot } from 'react-hot-loader'
 import {PropTypes} from 'prop-types';
 import {logout} from '../actions/authAction';
 
@@ -14,6 +13,8 @@ class NavigationBar extends React.Component{
   render(){
     const {isAuthenticated} = this.props.auth;
 
+    //var user_type = this.props.auth ? this.props.auth.user.user_type : "0";
+    
     const userLinks = (
       <ul className="nav navbar-nav navbar-right">
         <li><a href="#" onClick={this.logout.bind(this)}>Logout</a></li>

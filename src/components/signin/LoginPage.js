@@ -1,5 +1,4 @@
 import React from "react";
-import { hot } from 'react-hot-loader'
 import LoginForm from './LoginForm';
 import {PropTypes} from 'prop-types';
 import { connect } from "react-redux";
