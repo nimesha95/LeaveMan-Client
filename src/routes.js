@@ -1,6 +1,6 @@
 import React from "react";
-import { Route, BrowserRouter, Switch} from "react-router-dom";
-import { render } from "react-dom";
+import { Route} from "react-router-dom";
+//import { render } from "react-dom";
 
 import App from "./components/App";
 

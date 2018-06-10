@@ -12,7 +12,7 @@ class SignupPage extends React.Component{
     return (
       <div className="row">
         <div className="col-md-4 col-md-offset-4">
-          <SignupForm userSignupRequest={userSignupRequest} addFlashMessage={addFlashMessage} />
+            <SignupForm userSignupRequest={userSignupRequest} addFlashMessage={addFlashMessage} />
         </div>
       </div>
     )

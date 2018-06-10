@@ -3,17 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/icons": "1.0.0-beta.43",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "jsonwebtoken": "^8.2.1",
     "lodash": "^4.17.10",
+    "material-ui": "1.0.0-beta.45",
+    "moment": "2.22.1",
     "react": "^16.4.0",
+    "react-datepicker": "^1.5.0",
     "react-dom": "^16.4.0",
+    "react-easy-chart": "^1.0.0",
+    "react-google-charts": "^1.6.6",
     "react-hot-loader": "^4.2.0",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
+    "react-swipeable-views": "0.12.13",
     "redux": "^4.0.0",
     "redux-thunk": "^2.2.0",
     "shortid": "^2.2.8",
@@ -25,5 +32,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy" : "http://localhost:3003"
+  "proxy": "http://localhost:3003"
 }

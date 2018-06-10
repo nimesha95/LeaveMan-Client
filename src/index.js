@@ -1,13 +1,13 @@
 import React from "react";
 import { render } from "react-dom";
-import { BrowserRouter, Route,Switch ,Link } from "react-router-dom";
+import { BrowserRouter} from "react-router-dom";
 import { Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {createStore , applyMiddleware, compose} from 'redux';
 import rootReducer from './rootReducer';
 
 import routes from "./routes";
-import App from "./components/App";
+//import App from "./components/App";
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import { setCurrentUser } from "./actions/authAction";
 import jwt from 'jsonwebtoken';
