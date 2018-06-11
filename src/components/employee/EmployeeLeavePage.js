@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { makeLeaveRequest } from "../../actions/leaveAction";
 import {getData} from "../../actions/widgetAction";
 import RequestForm from "./RequestForm";
-import Paid_leave_widget from "../Widgets/paid_leave_widget";
+import Leave_stat_widget from "../Widgets/Leave_stat_widget";
 import NavPills from "../NavPills/NavPills";
 
 // core components
@@ -33,15 +33,33 @@ class EmployeeLeavePage extends React.Component {
     return (
       <div>
         <div className="row">
-          <Paid_leave_widget getData={getData} />
+          <div className="col-md-3">
+            <Leave_stat_widget type="paid"/>
+          </div>
+          <div className="col-md-3">
+            <Leave_stat_widget type="sick"/>
+          </div>
+          <div className="col-md-3">
+            <Leave_stat_widget type="half"/>
+          </div>
+          <div className="col-md-3">
+            <div className="panel panel-default">
+              <div className="panel-header">
+                Activity Feed
+              </div>
+              <div className="panel-body">
+                Basic panel example
+              </div>
+            </div>
+          </div>
         </div>
         <div className="row">
           <GridContainer>
-            <GridItem xs={12} sm={12} md={8} lg={6}>
+            <GridItem xs={12} sm={12} md={12} lg={12}>
               <NavPills
                 color="primary"
                 horizontal={{
-                  tabsGrid: { xs: 12, sm: 4, md: 4 },
+                  tabsGrid: { xs: 12, sm: 4, md: 2 },
                   contentGrid: { xs: 12, sm: 8, md: 8 }
                 }}
                 tabs={[
