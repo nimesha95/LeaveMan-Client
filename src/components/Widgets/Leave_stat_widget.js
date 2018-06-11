@@ -39,17 +39,18 @@ class Leave_stat_widget extends React.Component {
       Chart chartType = "PieChart"
       data = {
         this.state.data
-        // this.state.half.length>0 ? this.state.half
-        //: this.state.sick.length>0 ? this.state.sick
-        //: this.state.paid
       }
       options = {
         {
           pieHole: 0.5,
           pieSliceTextStyle: {
-            color: "black"
+            color: "white"
           },
-          legend: "none"
+          legend: "none",
+          slices: {
+            0: { color: '4169e1' },
+            1: { color: 'A9A9A9' }
+          }
         }
       }
       width = "100%" 
