@@ -5,6 +5,7 @@ import { makeLeaveRequest } from "../../actions/leaveAction";
 import RequestForm from "./RequestForm";
 import Leave_stat_widget from "../Widgets/Leave_stat_widget";
 import NavPills from "../NavPills/NavPills";
+import {addFlashMessage} from '../../actions/flashMessages';
 
 // core components
 import GridContainer from "../Grid/GridContainer.jsx";
@@ -69,7 +70,7 @@ class EmployeeLeavePage extends React.Component {
                     tabIcon: List,
                     tabContent: (
                       <span>
-                        <RequestForm makeLeaveRequest={makeLeaveRequest} />
+                        <RequestForm makeLeaveRequest={makeLeaveRequest} addFlashMessage={addFlashMessage}/>
                       </span>
                     )
                   },
@@ -95,7 +96,8 @@ class EmployeeLeavePage extends React.Component {
 }
 
 EmployeeLeavePage.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  addFlashMessage: PropTypes.func.isRequired
 };
 
 EmployeeLeavePage.contextTypes = {
@@ -111,4 +113,4 @@ function mapStateToProps(state) {
     auth: state.auth
   };
 }
-export default connect(mapStateToProps,{ makeLeaveRequest })(EmployeeLeavePage);
+export default connect(mapStateToProps,{ makeLeaveRequest,addFlashMessage })(EmployeeLeavePage);

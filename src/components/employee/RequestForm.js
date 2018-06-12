@@ -29,7 +29,7 @@ class RequestForm extends React.Component {
           startDate: moment(),
           errors: {},
           isLoading: false,
-          groupSize: 2,
+          leave_type: 2,
           reason: ""
         };
     
@@ -41,7 +41,21 @@ class RequestForm extends React.Component {
       onSubmit(e){
         e.preventDefault();
         console.log(this.state);
-        this.props.makeLeaveRequest(this.state);
+        this.props.makeLeaveRequest(this.state)
+        .then(
+          () => {
+            this.props.addFlashMessage({
+              type: 'success',
+              text: 'Leave Request Submitted!'
+            })  //look this is not showing
+            
+            this.setState({reason: ""}) //resetting the data of the form
+          },
+          ({ response }) => {
+            this.setState({ errors: response.data , isLoading:false})
+          }
+        );
+        
         }
 
       onChange(e) {
@@ -55,11 +69,11 @@ class RequestForm extends React.Component {
       }
 
       onGroupSizeSelect(value){
-        this.setState({ groupSize: value })
+        this.setState({ leave_type: value })
       };
 
   render() {
-    const { errors , groupSize } = this.state;
+    const { errors , leave_type } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
         <h4>Employee Request Leave </h4>
@@ -75,7 +89,7 @@ class RequestForm extends React.Component {
           <div className="col-md-6">
             <MultiToggle
             options={groupOptions}
-            selectedOption={groupSize}
+            selectedOption={leave_type}
             onSelectOption={this.onGroupSizeSelect.bind(this)}
             
             />
@@ -103,7 +117,8 @@ class RequestForm extends React.Component {
 }
 
 RequestForm.propTypes = {
-    makeLeaveRequest: PropTypes.func.isRequired
+    makeLeaveRequest: PropTypes.func.isRequired,
+    addFlashMessage: PropTypes.func.isRequired
   };
   
   RequestForm.contextTypes ={
