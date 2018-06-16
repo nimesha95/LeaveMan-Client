@@ -39,6 +39,7 @@ class RequestForm extends React.Component {
       }
 
       onSubmit(e){
+        this.setState({isLoading:true , errors: {} });
         e.preventDefault();
         console.log(this.state);
         this.props.makeLeaveRequest(this.state)
@@ -49,7 +50,7 @@ class RequestForm extends React.Component {
               text: 'Leave Request Submitted!'
             })  //look this is not showing
             
-            this.setState({reason: ""}) //resetting the data of the form
+            this.setState({reason: "" , isLoading:false}) //resetting the data of the form
           },
           ({ response }) => {
             this.setState({ errors: response.data , isLoading:false})
@@ -75,43 +76,56 @@ class RequestForm extends React.Component {
   render() {
     const { errors , leave_type } = this.state;
     return (
-      <form onSubmit={this.onSubmit}>
-        <h4>Employee Request Leave </h4>
-        <div className="row">
-          <div className="col-md-6">
-            <DatePicker
-            selected={this.state.startDate}
-            onChange={this.handleChange}
-            popperPlacement = "bottom-start"
-            placeholderText="Select Date"
-            />
+      <div className="col-md-12">
+        <form onSubmit={this.onSubmit}>
+          <h4>Employee Request Leave </h4>
+          <div className="row">
+            <div className="col-md-6">
+              <DatePicker
+              selected={this.state.startDate}
+              onChange={this.handleChange}
+              minDate={moment()}
+              placeholderText="Select Date"
+              popperPlacement="botom-start"
+              popperModifiers={{
+                flip: {
+                  enabled: false
+                },
+                preventOverflow: {
+                  enabled: true,
+                  escapeWithReference: false
+                }
+              }}
+              />
+              {errors && <span className="help-block" style={{color:'red'}}>{errors.err_msg}</span>}
+            </div>
+            <div className="col-md-6">
+              <MultiToggle
+              options={groupOptions}
+              selectedOption={leave_type}
+              onSelectOption={this.onGroupSizeSelect.bind(this)}
+              
+              />
+            </div>
           </div>
-          <div className="col-md-6">
-            <MultiToggle
-            options={groupOptions}
-            selectedOption={leave_type}
-            onSelectOption={this.onGroupSizeSelect.bind(this)}
-            
+        
+          <div className={classnames("form-group",{'has-error': errors.reason})}>
+            <label className="control-label">Reason</label>
+            <input
+              type="text"
+              value={this.state.reason}
+              onChange={this.onChange}
+              name="reason"
+              className="form-control"
             />
+            {errors && <span className="help-block">{errors.reason}</span>}
           </div>
-        </div>
-      
-        <div className={classnames("form-group",{'has-error': errors.reason})}>
-          <label className="control-label">Reason</label>
-          <input
-            type="text"
-            value={this.state.reason}
-            onChange={this.onChange}
-            name="reason"
-            className="form-control"
-          />
-          {errors && <span className="help-block">{errors.reason}</span>}
-        </div>
 
-        <div className="form-group">
-          <button disabled={this.state.isLoading} className="btn btn-primary btn-lg">Submit</button>
-        </div>
-      </form>
+          <div className="form-group">
+            <button disabled={this.state.isLoading} className="btn btn-primary btn-lg">Submit</button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

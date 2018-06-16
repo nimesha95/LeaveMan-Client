@@ -24,14 +24,25 @@ class Leave_stat_widget extends React.Component {
 
   componentDidMount() {
     //update the component at the mounting
-    var api_path = API + '/common/leave_info_summary?type=' + this.props.type
-    axios.get(api_path).then(res => {
-      var stats = res.data.data;
-      this.setState({
-        data: stats
-      })
-      console.log(this.state)
-    });
+
+    var api_path = API + '/common/leave_info_summary'
+  
+      var postData = {
+        type: this.props.type,
+      };
+      
+      let axiosConfig = {
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Access-Control-Allow-Origin": "*",
+            'Authorization': 'Bearer '+localStorage.jwtToken
+        }
+      };
+
+      axios.post(api_path,postData,axiosConfig).then(res => {
+        this.setState({data: res.data.data});
+        console.log(this.state.data);
+      });
   }
 
   render() {
@@ -42,6 +53,7 @@ class Leave_stat_widget extends React.Component {
       }
       options = {
         {
+          title : this.props.title,
           pieHole: 0.5,
           pieSliceTextStyle: {
             color: "white"
