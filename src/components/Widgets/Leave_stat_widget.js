@@ -22,9 +22,30 @@ class Leave_stat_widget extends React.Component {
     };
   }
 
+  componentWillReceiveProps(){
+    var api_path = API + '/common/leave_info_summary'
+    
+      var postData = {
+        type: this.props.type,
+      };
+      
+      let axiosConfig = {
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Access-Control-Allow-Origin": "*",
+            'Authorization': 'Bearer '+localStorage.jwtToken
+        }
+      };
+
+      axios.post(api_path,postData,axiosConfig).then(res => {
+        this.setState({data: res.data.data});
+        console.log(this.state.data);
+      });
+  }
+
   componentDidMount() {
     //update the component at the mounting
-
+    
     var api_path = API + '/common/leave_info_summary'
   
       var postData = {
@@ -46,8 +67,9 @@ class Leave_stat_widget extends React.Component {
   }
 
   render() {
-    return ( <
-      Chart chartType = "PieChart"
+    return ( 
+      <div>
+      <Chart chartType = "PieChart"
       data = {
         this.state.data
       }
@@ -67,6 +89,8 @@ class Leave_stat_widget extends React.Component {
       }
       width = "100%" 
       />
+      <p>{this.props.data1}</p>
+      </div>
     );
   }
 }

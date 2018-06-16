@@ -40,6 +40,7 @@ class RequestForm extends React.Component {
 
       onSubmit(e){
         this.setState({isLoading:true , errors: {} });
+        this.props.callback("event.target.value");  //something under testing
         e.preventDefault();
         console.log(this.state);
         this.props.makeLeaveRequest(this.state)
@@ -86,7 +87,7 @@ class RequestForm extends React.Component {
               onChange={this.handleChange}
               minDate={moment()}
               placeholderText="Select Date"
-              popperPlacement="botom-start"
+              popperPlacement="bottom-start"
               popperModifiers={{
                 flip: {
                   enabled: false
@@ -135,8 +136,12 @@ RequestForm.propTypes = {
     addFlashMessage: PropTypes.func.isRequired
   };
   
-  RequestForm.contextTypes ={
-    router: PropTypes.object
-  }
+RequestForm.protoTypes = {
+  callback : PropTypes.func,
+}
+    
+RequestForm.contextTypes ={
+  router: PropTypes.object
+}
 
 export default (RequestForm);

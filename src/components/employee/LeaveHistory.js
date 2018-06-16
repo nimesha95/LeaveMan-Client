@@ -3,6 +3,7 @@ import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import axios from 'axios';
 import {API} from '../../types';
+import moment from 'moment';
 
 // Import React Table
 import ReactTable from "react-table";
@@ -41,46 +42,32 @@ class LeaveHistory extends React.Component {
 
     render() {
       const { errors, data} = this.state;
-      console.log("stuff"+ data);
       return (
-          <div>
               <ReactTable
           data={this.state.leave_history}
           columns={[
-            {
-              columns: [
                 {
-                  Header: "First Name",
+                  Header: "Date",
+                  id: "date_moment",
+                  accessor: request =>
+                    moment(request.date_moment).format('MMMM Do YYYY')
+                },
+                {
+                  Header: "Status",
+                  accessor: "approved"
+                },
+                {
+                  Header: "Reason",
                   accessor: "reason"
                 },
                 {
-                  Header: "Last Name",
-                  id: "lastName",
-                  accessor: d => d.lastName
+                  Header: "Type",
+                  accessor: "type"
                 }
-              ]
-            },
-            {
-              columns: [
-                {
-                  Header: "Date",
-                  accessor: "date"
-                }
-              ]
-            },
-            {
-              columns: [
-                {
-                  Header: "Visits",
-                  accessor: "visits"
-                }
-              ]
-            }
           ]}
           defaultPageSize={4}
           className="-striped -highlight"
         />
-          </div>
       );
     }
 }

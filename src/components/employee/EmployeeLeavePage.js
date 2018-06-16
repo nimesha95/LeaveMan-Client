@@ -22,6 +22,19 @@ import List from "@material-ui/icons/List";
 import Calendar from 'react-calendar'
 
 class EmployeeLeavePage extends React.Component {
+  constructor(){
+    super();
+    this.state= {
+      data1 : ""
+    }
+  }
+
+  formChild1(params) {
+    this.setState({
+      data1 : params
+    })
+  }
+
   render() {
     var user_type = this.props.auth ? this.props.auth.user.user_type : "0";
 
@@ -39,7 +52,7 @@ class EmployeeLeavePage extends React.Component {
       <div>
         <div className="row">
           <div className="col-md-3">
-            <Leave_stat_widget type="paid" title="Paid Leaves"/>
+            <Leave_stat_widget type="paid" title="Paid Leaves" data1={this.state.data1}/>
           </div>
           <div className="col-md-3">
             <Leave_stat_widget type="sick" title="Sick Leaves"/>
@@ -73,7 +86,8 @@ class EmployeeLeavePage extends React.Component {
                     tabIcon: List,
                     tabContent: (
                       <span>
-                        <RequestForm makeLeaveRequest={makeLeaveRequest} addFlashMessage={addFlashMessage}/>
+                        <RequestForm makeLeaveRequest={makeLeaveRequest} addFlashMessage={addFlashMessage} 
+                            callback={this.formChild1.bind(this)}/>
                       </span>
                     )
                   },
