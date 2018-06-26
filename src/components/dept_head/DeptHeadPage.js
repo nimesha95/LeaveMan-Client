@@ -7,6 +7,7 @@ import events from './events';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import axios from 'axios';
 import {API} from '../../types';
+import Modal from 'react-responsive-modal';
 
 // Import React Table
 import ReactTable from "react-table";
@@ -20,24 +21,25 @@ class DeptHeadPage extends React.Component{
     this.state = {
       errors: {},
       isLoading: false,
-      toApprove: []
+      toApprove: [],
+      open1: false,
     };
   }
 
   componentDidMount() {
     var api_path = API + '/dept_head/toApprove'
-     let axiosConfig = {
-       headers: {
-           'Content-Type': 'application/json;charset=UTF-8',
-           "Access-Control-Allow-Origin": "*",
-           'Authorization': 'Bearer '+localStorage.jwtToken
-       }
-     };
+    let axiosConfig = {
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+        'Authorization': 'Bearer '+localStorage.jwtToken
+      }
+    };
 
-     axios.post(api_path,axiosConfig).then(res => {
-       this.setState({toApprove: res.data});
-       console.log(this.state);
-     });
+    axios.post(api_path,axiosConfig).then(res => {
+      this.setState({toApprove: res.data});
+      console.log(this.state);
+    });
   }
 
   printThis(_id){
@@ -55,9 +57,18 @@ class DeptHeadPage extends React.Component{
 
      axios.post(api_path,postData,axiosConfig).then(res => {
        //this.setState({toApprove: res.data});
+       this.setState({ open1: true });
        console.log(res.data);
      });
   }
+
+  onOpenModal = () => {
+    this.setState({ open1: true });
+  };
+
+  onCloseModal = () => {
+    this.setState({ open1: false });
+  };
 
   render(){
     var user_type = this.props.auth ? this.props.auth.user.user_type : "0";
@@ -110,6 +121,11 @@ class DeptHeadPage extends React.Component{
             showMultiDayTimes
             defaultDate={new Date()}
           />
+        </div>
+        <div>
+          <Modal open={this.state.open1} onClose={this.onCloseModal} center>
+            <h2>Simple centered modal</h2>
+          </Modal>
         </div>
       </div>
     )
