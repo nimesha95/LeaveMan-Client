@@ -9,6 +9,8 @@ import axios from 'axios';
 import {API} from '../../types';
 import Modal from 'react-responsive-modal';
 
+import ModalBody from "./ModalBody";
+
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
@@ -22,11 +24,24 @@ class DeptHeadPage extends React.Component{
       errors: {},
       isLoading: false,
       toApprove: [],
+      leaveInfo: [],
       open1: false,
+      data1 : ""
     };
   }
 
   componentDidMount() {
+    this.fetchAgain();
+  }
+
+  formChild1(params) {
+    this.setState({
+      open1 : params
+    })
+    this.fetchAgain();
+  }
+
+  fetchAgain(){
     var api_path = API + '/dept_head/toApprove'
     let axiosConfig = {
       headers: {
@@ -56,9 +71,8 @@ class DeptHeadPage extends React.Component{
     };
 
      axios.post(api_path,postData,axiosConfig).then(res => {
-       //this.setState({toApprove: res.data});
-       this.setState({ open1: true });
-       console.log(res.data);
+       this.setState({ open1: true ,leaveInfo: res.data });
+       console.log(this.state);
      });
   }
 
@@ -123,8 +137,9 @@ class DeptHeadPage extends React.Component{
           />
         </div>
         <div>
-          <Modal open={this.state.open1} onClose={this.onCloseModal} center>
-            <h2>Simple centered modal</h2>
+          <Modal open={this.state.open1} onClose={this.onCloseModal} center >
+            <p style={{width:"800px"}}></p>
+            <ModalBody leaveInfo={this.state.leaveInfo} callback={this.formChild1.bind(this)}/>
           </Modal>
         </div>
       </div>

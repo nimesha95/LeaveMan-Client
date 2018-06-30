@@ -1,16 +1,17 @@
 import {GET_PENDING_LEAVE} from '../types';
-import isEmpty from 'lodash/isEmpty';
 
 const initialState = {
-    isAuthenticated : false,
+    toApprove: {},
+    isLoading: true
 };
 
-export default (state = initialState, action = {}) => {
+export default (state = initialState, action) => {
+    console.log(action)
     switch(action.type){
         case GET_PENDING_LEAVE:
             return {
-                isAuthenticated: !isEmpty(action.user),
-                user: action.user
+                ...state,
+                toApprove: action.toApprove.data,
             };
         default: return state;
     }

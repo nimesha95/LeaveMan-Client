@@ -4,14 +4,16 @@ import {GET_PENDING_LEAVE} from '../types';
 export function loadPendingLeave(){
     return dispatch => {
         return axios.get('/api/dept_head/toApprove').then(res => {
-            dispatch(setPending(response.data));
+            console.log(res.data)
+            dispatch(setPending(res.data,false));
         })
         };
 }
 
-export function setPending(data){
+export function setPending(data,isLoading){
     return{
         type:GET_PENDING_LEAVE,
-        pending_leave:data
+        isLoading: isLoading,
+        toApprove:data
     }
 }
