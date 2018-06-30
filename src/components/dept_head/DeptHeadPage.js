@@ -3,7 +3,6 @@ import {PropTypes} from 'prop-types';
 import { connect } from "react-redux";
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
-import events from './events';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import axios from 'axios';
 import {API} from '../../types';
@@ -26,12 +25,14 @@ class DeptHeadPage extends React.Component{
       toApprove: [],
       leaveInfo: [],
       open1: false,
-      data1 : ""
+      data1 : "",
+      events: []
     };
   }
 
   componentDidMount() {
     this.fetchAgain();
+    this.fetchCallender();
   }
 
   formChild1(params) {
@@ -54,6 +55,21 @@ class DeptHeadPage extends React.Component{
     axios.post(api_path,axiosConfig).then(res => {
       this.setState({toApprove: res.data});
       console.log(this.state);
+    });
+  }
+
+  fetchCallender(){
+    var api_path = API + '/dept_head/Callender'
+    let axiosConfig = {
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+        'Authorization': 'Bearer '+localStorage.jwtToken
+      }
+    };
+
+    axios.post(api_path,axiosConfig).then(res => {
+      this.setState({events: res.data.schedule})
     });
   }
 
@@ -129,7 +145,7 @@ class DeptHeadPage extends React.Component{
           </div>
         <div className="col-md-6" style={{height: '400px'}}>
           <BigCalendar
-            events={events}
+            events={this.state.events}
             views={['month', 'agenda']}
             step={60}
             showMultiDayTimes
