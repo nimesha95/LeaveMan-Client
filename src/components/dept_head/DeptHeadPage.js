@@ -54,7 +54,7 @@ class DeptHeadPage extends React.Component{
 
     axios.post(api_path,axiosConfig).then(res => {
       this.setState({toApprove: res.data});
-      console.log(this.state);
+      console.log(res.data);
     });
   }
 

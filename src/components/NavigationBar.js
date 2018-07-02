@@ -29,8 +29,8 @@ class NavigationBar extends React.Component{
     );
 
     return(
-      <nav className="navbar navbar-default">
-      <div className="container-fluid">
+      <nav className="navbar navbar-default" style={ {"margin-left": "-25px", "margin-right": "-25px","margin-bottom": "25px"}}>
+      <div className="container-fluid" style={{paddingRight: '0px' , 'white-space': 'nowrap'}} >
         <div className="navbar-header">
           <button
             type="button"

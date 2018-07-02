@@ -27,6 +27,7 @@ class RequestForm extends React.Component {
         super(props);
         this.state = {
           startDate: moment(),
+          endDate: moment(),
           errors: {},
           isLoading: false,
           leave_type: 2,
@@ -36,6 +37,7 @@ class RequestForm extends React.Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeEnd = this.handleChangeEnd.bind(this);
       }
 
       onSubmit(e){
@@ -70,6 +72,12 @@ class RequestForm extends React.Component {
         });
       }
 
+      handleChangeEnd(date) {
+        this.setState({
+          endDate: date
+        });
+      }
+
       onGroupSizeSelect(value){
         this.setState({ leave_type: value })
       };
@@ -83,20 +91,46 @@ class RequestForm extends React.Component {
           <div className="row">
             <div className="col-md-6">
               <DatePicker
-              selected={this.state.startDate}
-              onChange={this.handleChange}
-              minDate={moment()}
-              placeholderText="Select Date"
-              popperPlacement="bottom-start"
-              popperModifiers={{
-                flip: {
-                  enabled: false
-                },
-                preventOverflow: {
-                  enabled: true,
-                  escapeWithReference: false
-                }
-              }}
+                selected={this.state.startDate}
+                onChange={this.handleChange}
+                selectsStart
+
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
+
+                minDate={moment()}
+                placeholderText="Select Start Date"
+                popperPlacement="bottom-start"
+                popperModifiers={{
+                  flip: {
+                    enabled: false
+                  },
+                  preventOverflow: {
+                    enabled: true,
+                    escapeWithReference: false
+                  }
+                }}
+              />
+              <DatePicker
+                selected={this.state.endDate}
+                selectsEnd
+
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
+
+                onChange={this.handleChangeEnd}
+                minDate={moment()}
+                placeholderText="Select End Date"
+                popperPlacement="bottom-start"
+                popperModifiers={{
+                  flip: {
+                    enabled: false
+                  },
+                  preventOverflow: {
+                    enabled: true,
+                    escapeWithReference: false
+                  }
+                }}
               />
               {errors && <span className="help-block" style={{color:'red'}}>{errors.err_msg}</span>}
             </div>
