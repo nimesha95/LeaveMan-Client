@@ -76,6 +76,10 @@ class Leave_stat_widget extends React.Component {
       options = {
         {
           title : this.props.title,
+          titleTextStyle: {
+            fontSize: 14,
+            bold: true
+        },
           pieHole: 0.5,
           pieSliceTextStyle: {
             color: "white"

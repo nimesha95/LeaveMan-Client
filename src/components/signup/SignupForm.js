@@ -48,9 +48,6 @@ class SignupForm extends React.Component {
     const { errors } = this.state;
     return (
           <form onSubmit={this.onSubmit}>
-            <div className="card-header card-header-primary text-center">
-              <h4>Join US </h4>
-            </div>
             <div className={classnames("form-group",{'has-error': errors.username})}>
               <label className="control-label">Username</label>
               <input
@@ -88,7 +85,7 @@ class SignupForm extends React.Component {
             </div>
 
             <div className="form-group">
-              <button disabled={this.state.isLoading} className="btn btn-primary btn-lg">Signup</button>
+              <button disabled={this.state.isLoading} className="btn btn-success btn-block btn-lg">Signup</button>
             </div>
           </form>
     );

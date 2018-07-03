@@ -58,7 +58,6 @@ class ModalBody extends React.Component {
         <div className="row">
           <div className="col-md-5">
             <h3>User Info</h3>
-            <p>Image</p>
             <p>Name: something from server </p>
             <p>Department: {this.props.leaveInfo.UserInfo.dept}</p>
             <p>Username: {this.props.leaveInfo.UserInfo.username}</p>

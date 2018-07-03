@@ -17,19 +17,19 @@ class NavigationBar extends React.Component{
     
     const userLinks = (
       <ul className="nav navbar-nav navbar-right">
-        <li><a href="#" onClick={this.logout.bind(this)}>Logout</a></li>
+        <li><a className=" nav_nav" href="#" onClick={this.logout.bind(this)}>Logout</a></li>
       </ul>
     );
 
     const guestLinks = (
       <ul className="nav navbar-nav navbar-right">
-        <li><Link to="/signup">Singup</Link></li>
-        <li><Link to="/signin">Login</Link></li>
+        <li><Link className="nav_nav" to="/signup">Singup</Link></li>
+        <li><Link className="nav_nav" to="/signin">Login</Link></li>
       </ul>
     );
 
     return(
-      <nav className="navbar navbar-default" style={ {"margin-left": "-25px", "margin-right": "-25px","margin-bottom": "25px"}}>
+      <nav className="navbar navbar-default navbar-custom " style={ {"margin-left": "-25px", "margin-right": "-25px","margin-bottom": "25px"}}>
       <div className="container-fluid" style={{paddingRight: '0px' , 'white-space': 'nowrap'}} >
         <div className="navbar-header">
           <button
@@ -44,7 +44,7 @@ class NavigationBar extends React.Component{
             <span className="icon-bar" />
             <span className="icon-bar" />
           </button>
-          <Link to="/" className="navbar-brand">
+          <Link to="/" className="navbar-brand nav_nav">
             LeaveMan
           </Link>
         </div>

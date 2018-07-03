@@ -58,28 +58,33 @@ class ModalBody extends React.Component {
       <div>
         <div className="row">
           <div className="col-md-5">
-            <h3>User Info</h3>
-            <p>Image</p>
-            <p>Name: something from server </p>
-            <p>Department: {this.props.leaveInfo.UserInfo.dept}</p>
-            <p>Username: {this.props.leaveInfo.UserInfo.username}</p>
-            <p>Registeration ID: something from server</p>
+          <div class="panel panel-default">
+          <div className="panel-header">
+            <h4>User Info</h4>
+            </div>
+            <div className="panel-body">  
+              <p>Name: <b>emp</b> </p>
+              <p>Department: <b>{this.props.leaveInfo.UserInfo.dept}</b></p>
+              <p>Username: <b>{this.props.leaveInfo.UserInfo.username}</b></p>
+              <p>Registeration ID: <b>EMP001</b></p>
+            </div>
+          </div>
           </div>
           <div className="col-md-5">
             <h3>Leave Request</h3>
-            <p>Date: {this.props.leaveInfo.LeaveInfo.date}</p>
-            <p>Type: {this.props.leaveInfo.LeaveInfo.type}</p>
-            <p>Reason: {this.props.leaveInfo.LeaveInfo.reason}</p>
-            <p>Request Made: {this.props.leaveInfo.LeaveInfo.timestamp}</p>
+            <p>Leave Date: <b>{this.props.leaveInfo.LeaveInfo.date}</b></p>
+            <p>Type: <b>{this.props.leaveInfo.LeaveInfo.type}</b></p>
+            <p>Reason: <b>{this.props.leaveInfo.LeaveInfo.reason}</b></p>
+            <p>Request Made: <b>{new Date(parseInt(this.props.leaveInfo.LeaveInfo.timestamp)).toDateString()}</b></p>
           </div>
           <div className="col-md-2">
-            <div className="row">
-              <button onClick={(e) => this.handleClick(e)}>
+            <div className="row" style={{marginTop:"20%"}}>
+              <button className="btn btn-success btn-lg" onClick={(e) => this.handleClick(e)}>
                 Accept
               </button>
             </div>
-            <div className="row">
-              <button onClick={(e) => this.handleDeclineClick(e)}>
+            <div className="row" style={{marginTop:"20%"}}>
+              <button className="btn btn-danger btn-lg" onClick={(e) => this.handleDeclineClick(e)}>
                 Decline
               </button>
             </div>
@@ -87,6 +92,8 @@ class ModalBody extends React.Component {
         </div>
         <div className="row">
           <div className="col-md-12">
+          <div class="panel panel-default">
+            <h4>Employee History</h4>
             <ReactTable
                 data={this.props.leaveInfo.LeaveHistory}
                 columns={[
@@ -106,6 +113,7 @@ class ModalBody extends React.Component {
                 defaultPageSize={5}
                 className="-striped -highlight"
                 />
+          </div>
           </div>
         </div>
       </div>

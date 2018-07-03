@@ -52,21 +52,38 @@ class EmployeeLeavePage extends React.Component {
       <div>
         <div className="row">
           <div className="col-md-3">
+          <div class="panel panel-default">
             <Leave_stat_widget type="paid" title="Paid Leaves" data1={this.state.data1}/>
           </div>
-          <div className="col-md-3">
-            <Leave_stat_widget type="sick" title="Sick Leaves"/>
           </div>
           <div className="col-md-3">
-            <Leave_stat_widget type="half" title="half Leaves"/>
+          <div class="panel panel-default">
+            <Leave_stat_widget type="sick" title="Sick Leaves"/>
+          </div>
+          </div>
+          <div className="col-md-3">
+          <div class="panel panel-default">
+            <Leave_stat_widget type="half" title="Half Leaves"/>
+          </div>
           </div>
           <div className="col-md-3">
             <div className="panel panel-default">
               <div className="panel-header">
                 Activity Feed
               </div>
-              <div className="panel-body">
-                Basic panel example
+              <div className="panel-body" style={{"overflow-y": "scroll", height:"300px"}}>
+                <div className="panel panel-default">
+                <span className="glyphicon glyphicon-ok" style={{color:"#00695c"}} aria-hidden="true"></span> Your Leave have been confirmed
+                </div>
+                <div className="panel panel-default">
+                  <span className="glyphicon glyphicon-remove" style={{color:"red"}} aria-hidden="true"></span> Your Leave is declined
+                </div>
+                <div className="panel panel-default">
+                <span className="glyphicon glyphicon-ok" style={{color:"#00695c"}} aria-hidden="true"></span> Your Leave have been Approved
+                </div>
+                <div className="panel panel-default">
+                <span className="glyphicon glyphicon-ok" style={{color:"#00695c"}} aria-hidden="true"></span> Your Leave have been confirmed
+                </div>
               </div>
             </div>
           </div>
@@ -74,6 +91,7 @@ class EmployeeLeavePage extends React.Component {
         <div className="row">
           <GridContainer >
             <GridItem xs={9} sm={9} md={9} lg={9} >
+            <div class="panel panel-default">
               <NavPills
                 color="primary"
                 horizontal={{
@@ -101,11 +119,13 @@ class EmployeeLeavePage extends React.Component {
                   }
                 ]}
               />
+              </div>
             </GridItem>
             <GridItem xs={3} sm={3} md={3} lg={3}>
               <Calendar />
             </GridItem>
           </GridContainer>
+          
         </div>
       </div>
     );

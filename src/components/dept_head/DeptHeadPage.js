@@ -112,6 +112,7 @@ class DeptHeadPage extends React.Component{
     return (
       <div className="row">
         <div className="col-md-6" style={{height: '400px'}}>
+          <h3>Pending Leave Requests</h3>
           <ReactTable
             data={this.state.toApprove}
             columns={[
@@ -136,7 +137,7 @@ class DeptHeadPage extends React.Component{
               {
                 Header: "",
                 accessor: "_id",
-                Cell: ({value}) => (<button className="btn btn-primary" onClick={()=>this.printThis(value)}>Approve</button>)
+                Cell: ({value}) => (<button className="btn btn-success" onClick={()=>this.printThis(value)}>View</button>)
               }
         ]}
             defaultPageSize={7}

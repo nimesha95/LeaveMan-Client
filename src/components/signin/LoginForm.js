@@ -63,7 +63,6 @@ class LoginForm extends React.Component {
     const { errors} = this.state;
     return (
       <form onSubmit={this.onSubmit}>
-        <h1>Login </h1>
 
         { errors.err_msg && <div className="alert alert-danger">{errors.err_msg}</div>}
 
@@ -92,7 +91,7 @@ class LoginForm extends React.Component {
         </div>
 
         <div className="form-group">
-          <button disabled={this.state.isLoading} className="btn btn-primary btn-lg">Login</button>
+          <button disabled={this.state.isLoading} className="btn btn-success btn-block btn-lg">Login</button>
         </div>
       </form>
     );

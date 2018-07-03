@@ -1,6 +1,26 @@
 /*
+  Jumbotron
+*/
+.vertical-center {
+  min-height: 80%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 80vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+  background-color: #eeeeee   ;
+}
+.my-container{
+  text-align: center;
+}
+/*
   NavBar css
 */
+.nav_nav{
+  color: #FFFFFF !important;
+}
+.navbar-custom {
+  background-color: #3f51b5     ;
+}
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 #cssmenu,
 #cssmenu ul,

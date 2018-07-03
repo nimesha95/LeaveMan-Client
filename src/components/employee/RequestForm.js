@@ -90,6 +90,7 @@ class RequestForm extends React.Component {
           <h4>Employee Request Leave </h4>
           <div className="row">
             <div className="col-md-6">
+              From:
               <DatePicker
                 selected={this.state.startDate}
                 onChange={this.handleChange}
@@ -111,6 +112,9 @@ class RequestForm extends React.Component {
                   }
                 }}
               />
+              </div>
+              <div className="col-md-6">
+              To:
               <DatePicker
                 selected={this.state.endDate}
                 selectsEnd
@@ -132,7 +136,11 @@ class RequestForm extends React.Component {
                   }
                 }}
               />
+              <div>
+                </div>
+                <div className="row">
               {errors && <span className="help-block" style={{color:'red'}}>{errors.err_msg}</span>}
+              </div>
             </div>
             <div className="col-md-6">
               <MultiToggle
