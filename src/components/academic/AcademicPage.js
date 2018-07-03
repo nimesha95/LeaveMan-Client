@@ -94,10 +94,8 @@ class AcademicPage extends React.Component{
 
     return (
       <div className="row">
-        <div className="col-md-4">
-          <p>stuff</p>
-        </div>
-        <div className="col-md-8" style={{height: '400px'}}>
+        <div className="col-md-10 col-md-offset-1" style={{height: '400px'}}>
+        <h3>Pending Leave Requests</h3>
           <ReactTable
             data={this.state.toApprove}
             columns={[
@@ -122,7 +120,7 @@ class AcademicPage extends React.Component{
               {
                 Header: "",
                 accessor: "_id",
-                Cell: ({value}) => (<button className="btn btn-primary" onClick={()=>this.printThis(value)}>Approve</button>)
+                Cell: ({value}) => (<button className="btn btn-success" onClick={()=>this.printThis(value)}>View</button>)
               }
         ]}
             defaultPageSize={7}
