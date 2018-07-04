@@ -54,7 +54,7 @@ class LeaveHistory extends React.Component {
                 },
                 {
                   Header: "Status",
-                  accessor: "approved"
+                  accessor: "status"
                 },
                 {
                   Header: "Reason",

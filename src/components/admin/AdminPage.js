@@ -6,6 +6,7 @@ import 'react-dropdown/style.css'
 import classnames from 'classnames';
 import axios from 'axios';
 import {API} from '../../types';
+import LeaveChart from "../Widgets/Leave_History";
 
 import Modal from 'react-responsive-modal';
 
@@ -103,9 +104,9 @@ class AdminPage extends React.Component{
       <div className="row">
         <div className="col-md-6">
           <div class="panel panel-default">
-            <div class="panel-heading">Leave Statistics for the day</div>
+            <div class="panel-heading">Leave Statistics</div>
             <div class="panel-body">
-              <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />
+              <LeaveChart />
             </div>
           </div>
           </div>
