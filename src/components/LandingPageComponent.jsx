@@ -9,9 +9,9 @@ class LandingPageComponent extends React.Component{
       <div className="container my-container">
           <h1>Welcome to LeaveMan</h1>
           <p>UCSC Leave Management Portal</p>
-          <p><Link className="btn btn-primary btn-lg" to="/signin">Singin</Link></p>
+          <p><Link className="btn btn-primary btn-lg" to="/signin">Login</Link></p>
           
-          <p style={{marginTop: '15%'}}>Not a user yet?</p>
+          <p style={{marginTop: '5%'}}>Not a user yet?</p>
           <p><a href="#">Signup</a></p>
       </div>
       </div>
